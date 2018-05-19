@@ -1,0 +1,11 @@
+.AddStockBar {
+    width: 100%;
+    text-align: center;
+    padding-top: 10em;
+}
+
+.SelectStock {
+    width: 10em;
+    text-align: center;
+    padding-right: 10px;
+}  
