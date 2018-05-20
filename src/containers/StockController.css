@@ -1,0 +1,15 @@
+.StockItems {
+    margin-top: 5em;
+    text-align: center;
+}
+
+.existsAlert {
+    width: 50%;
+
+}
+
+.errorAlert {
+    width: 50%;
+}
+
+

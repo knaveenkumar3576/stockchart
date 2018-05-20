@@ -4,6 +4,7 @@ import {Button,ButtonToolbar,ButtonGroup} from 'react-bootstrap'
 import VirtualizedSelect from 'react-virtualized-select'
 import 'react-select/dist/react-select.css'
 
+import Aux from '../hoc/Auxillary'
 import './AddStockBar.css'
 
 class AddStockBar extends Component {
@@ -20,8 +21,8 @@ class AddStockBar extends Component {
 
     render() {
         return (
-            <div className='AddStockBar'>
-                <ButtonGroup>
+            <Aux>
+                <ButtonGroup className='AddStockBar'>
                     <VirtualizedSelect 
                         className='SelectStock'
                         ref="citySelect"
@@ -36,10 +37,11 @@ class AddStockBar extends Component {
                         valueKey="symbol"
                     />
                     <ButtonToolbar>
-                        <Button onClick={() => this.props.addStockHandler(this.state.selectValue)} bsStyle="primary">Add</Button>
+                        <Button className='addbutton' onClick={() => this.props.addStockHandler(this.state.selectValue)} bsStyle="primary">Add</Button>
                     </ButtonToolbar>
                 </ButtonGroup>
-            </div>
+                {this.props.alert}
+            </Aux>
         );
     }
 
