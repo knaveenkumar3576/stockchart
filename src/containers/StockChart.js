@@ -26,28 +26,31 @@ class StockChart extends Component {
      updatePrices=(stocks) =>{
         let stockdetails =[]
 
-        axiosHandler.get('/stock/market/batch?symbols='+ stocks.selectedStocks.join(",") + '&types=price')
-        .then(response => {
-            let res =  response.data
+        if(stocks.selectedStocks.length !==0 ) {
 
-            for (let stockname in response.data) {
-                const stockdetail =[stockname, res[stockname].price]
-                stockdetails.push(stockdetail)
-            }
-
-            this.setState({
-                selectedStocksDetails: stockdetails,
-                error: false,
-                errormessage: ''
-            });
+            axiosHandler.get('/stock/market,/batch?symbols='+ stocks.selectedStocks.join(",") + '&types=price')
+            .then(response => {
+                let res =  response.data
     
-        })
-        .catch(error => {
-            this.setState({
-                error : true,
-                errormessage: 'Could not get the prices using /stock/market/batch?symbols API to update the chart'
-            });      
-        })                  
+                for (let stockname in response.data) {
+                    const stockdetail =[stockname, res[stockname].price]
+                    stockdetails.push(stockdetail)
+                }
+    
+                this.setState({
+                    selectedStocksDetails: stockdetails,
+                    error: false,
+                    errormessage: ''
+                });
+        
+            })
+            .catch(error => {
+                this.setState({
+                    error : true,
+                    errormessage: 'Could not get the prices using /stock/market/batch?symbols API to update the chart'
+                });      
+            })                      
+        }
     }
 
     render() {
@@ -65,7 +68,7 @@ class StockChart extends Component {
             },
         ];
 
-        if(this.state.selectedStocksDetails.length !==0 && this.state.error) {
+        if(this.state.error) {
             errorAlert = (<Alert className='errorAlert' bsStyle="danger">
                 <strong>{this.state.errormessage}</strong>
             </Alert>)
@@ -83,7 +86,7 @@ class StockChart extends Component {
                 height="400px"
                 legend_toggle
             />
-        {errorAlert}
+            {errorAlert}
           </div>
         );
     }
