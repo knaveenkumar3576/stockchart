@@ -39,7 +39,7 @@ class StockController extends Component {
     addStockHandler=(selectedStock)=> {
         let stocks = [...this.state.selectedStocks];
 
-        if(selectedStock === '') {
+        if(!selectedStock) {
             return;
         }
 
