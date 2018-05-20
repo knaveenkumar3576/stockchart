@@ -28,7 +28,7 @@ class StockChart extends Component {
 
         if(stocks.selectedStocks.length !==0 ) {
 
-            axiosHandler.get('/stock/market,/batch?symbols='+ stocks.selectedStocks.join(",") + '&types=price')
+            axiosHandler.get('/stock/market/batch?symbols='+ stocks.selectedStocks.join(",") + '&types=price')
             .then(response => {
                 let res =  response.data
     
